@@ -1,22 +1,47 @@
 package com.example.nikita.entity;
 
-import jakarta.persistence.*;
+import com.example.nikita.dto.View;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "employees_rest")
+@Table(name = "employee_rest_many")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonView(View.Employee.class)
     private int id;
+    @JsonView(View.Employee.class)
     @Column(name = "name")
     private String name;
+
+    @JsonView(View.Employee.class)
     @Column(name = "surname")
     private String surname;
+
+    @JsonView(View.Employee.class)
     @Column(name = "department")
     private String department;
+
+    @JsonView(View.Employee.class)
     @Column(name = "salary")
     private int salary;
+
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinTable(name = "employee_project",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id")
+    )
+
+    @JsonView(View.Employee.class)
+    private List<Project> projects = new ArrayList<>();
 
     public Employee() {
     }
@@ -66,5 +91,13 @@ public class Employee {
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 }
