@@ -7,7 +7,6 @@ import lombok.Builder;
 import java.util.List;
 
 // Data Transfer Object
-@Builder
 public class EmployeeDTO {
     private int id;
     private String name;

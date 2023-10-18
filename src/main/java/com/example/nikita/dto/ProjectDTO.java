@@ -5,7 +5,7 @@ import lombok.Builder;
 
 import java.util.List;
 
-@Builder
+
 public class ProjectDTO {
     private int id;
     private String title;

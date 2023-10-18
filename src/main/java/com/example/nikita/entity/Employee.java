@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "employee_rest_many")
+@Table(name = "employee_full")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,8 +34,23 @@ public class Employee {
     @Column(name = "salary")
     private int salary;
 
+    @JsonView(View.Employee.class)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id")
+    private Car car;
+
+    @JsonView(View.Employee.class)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "house_id")
+    private House house;
+
+    @JsonView(View.Employee.class)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_id")
+    private List<Pet> pets= new ArrayList<>();
+
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinTable(name = "employee_project",
+    @JoinTable(name = "emps_projects",
             joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "project_id")
     )
@@ -51,6 +66,17 @@ public class Employee {
         this.surname = surname;
         this.department = department;
         this.salary = salary;
+    }
+
+    public Employee(String name, String surname, String department, int salary, Car car, House house, List<Pet> pets, List<Project> projects) {
+        this.name = name;
+        this.surname = surname;
+        this.department = department;
+        this.salary = salary;
+        this.car = car;
+        this.house = house;
+        this.pets = pets;
+        this.projects = projects;
     }
 
     public int getId() {
@@ -99,5 +125,29 @@ public class Employee {
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
+    }
+
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
     }
 }
