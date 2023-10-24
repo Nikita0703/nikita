@@ -27,8 +27,8 @@ public class MyRESTController {
 
     @GetMapping("/employees")
     @JsonView(View.Employee.class)
-    public List<Employee> getAllEmployees() {
-        List<Employee> employees = employeeService.getAllEmployees();
+    public List<EmployeeDTO> getAllEmployees() {
+        List<EmployeeDTO> employees = employeeService.getAllEmployees();
 
         return employees;
     }
@@ -40,8 +40,8 @@ public class MyRESTController {
 
     @GetMapping("/employees/{id}")
     @JsonView(View.Employee.class)
-    public Employee getEmployee(@PathVariable int id) {
-        Employee employee = employeeService.getEmployee(id);
+    public EmployeeDTO getEmployee(@PathVariable int id) {
+        EmployeeDTO employee = employeeService.getEmployee(id);
         if (employee == null) {
             throw new NoSuchEmployeeException("There is no employee with id = " + id + " in database");
         }
@@ -59,9 +59,9 @@ public class MyRESTController {
 
 
     @PostMapping("/employees")
-    public Employee saveEmployee(@RequestBody Employee employee) {
-        employeeService.saveEmployee(employee);
-        return employee;
+    public EmployeeDTO saveEmployee(@RequestBody EmployeeDTO employeedto) {
+        employeeService.saveEmployee(employeedto);
+        return employeedto;
     }
 
     @PostMapping("/projects")
@@ -72,9 +72,9 @@ public class MyRESTController {
 
 
     @PutMapping("/employees")
-    public Employee updateEmployee(@RequestBody Employee employee) {
-        employeeService.saveEmployee(employee);
-        return employee;
+    public EmployeeDTO updateEmployee(@RequestBody EmployeeDTO employeeDTO) {
+        employeeService.saveEmployee(employeeDTO);
+        return employeeDTO;
     }
 
     @PutMapping("/projects")
@@ -85,7 +85,7 @@ public class MyRESTController {
 
     @DeleteMapping("/employees/{id}")
     public String deleteEmployee(@PathVariable int id) {
-        Employee employee = employeeService.getEmployee(id);
+        EmployeeDTO employee = employeeService.getEmployee(id);
         if (employee == null) {
            throw new NoSuchEmployeeException("There is no employee with id = " + id + " in database");
         }

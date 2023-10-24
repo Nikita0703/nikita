@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,6 +15,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "employee_full")
+@Builder
+@AllArgsConstructor
+
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,7 +74,7 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Employee(String name, String surname, String department, int salary, Car car, House house, List<Pet> pets, List<Project> projects) {
+    public Employee(String name, String surname, int salary, String department, Car car, House house, List<Pet> pets, List<Project> projects) {
         this.name = name;
         this.surname = surname;
         this.department = department;

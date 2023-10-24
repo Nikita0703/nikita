@@ -5,6 +5,8 @@ import com.example.nikita.dto.View;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 import javax.persistence.*;
 
@@ -13,6 +15,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "projects_for_empl")
+@Builder
+@AllArgsConstructor
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

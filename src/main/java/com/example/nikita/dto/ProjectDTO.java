@@ -1,21 +1,25 @@
 package com.example.nikita.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 import java.util.List;
-
-
+@Builder
 public class ProjectDTO {
-    private int id;
+  //  private int id;
+  @JsonView(View.Employee.class)
     private String title;
+
+    @JsonView(View.Employee.class)
     private int year;
+
 
     @JsonView(View.Project.class)
     private List<EmployeeDTO> employees;
 
-    public ProjectDTO(int id,String title, int year, List<EmployeeDTO> employees) {
-        this.id=id;
+    public ProjectDTO(String title, int year, List<EmployeeDTO> employees) {
+      //  this.id=id;
         this.title = title;
         this.year = year;
         this.employees = employees;
@@ -48,11 +52,11 @@ public class ProjectDTO {
         this.employees = employees;
     }
 
-    public int getId() {
-        return id;
-    }
+  //  public int getId() {
+    //    return id;
+   // }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  //  public void setId(int id) {
+       // this.id = id;
+  //  }
 }

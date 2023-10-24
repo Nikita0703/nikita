@@ -1,15 +1,22 @@
 package com.example.nikita.dto;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+
+@Builder
 public class HouseDTO {
-    private int id;
+   // private int id;
+   @JsonView(View.Employee.class)
     private String adress;
+    @JsonView(View.Employee.class)
 
     private int flour;
-
+    @JsonView(View.Employee.class)
     private int flat;
 
-    public HouseDTO(int id, String adress, int flour, int flat) {
-        this.id = id;
+    public HouseDTO( String adress, int flour, int flat) {
+      //  this.id = id;
         this.adress = adress;
         this.flour = flour;
         this.flat = flat;
@@ -17,13 +24,13 @@ public class HouseDTO {
 
     public HouseDTO(){};
 
-    public int getId() {
-        return id;
-    }
+  //  public int getId() {
+        //return id;
+ //   }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    //public void setId(int id) {
+        //this.id = id;
+   // }
 
     public String getAdress() {
         return adress;

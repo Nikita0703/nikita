@@ -1,27 +1,31 @@
 package com.example.nikita.dto;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import lombok.Builder;
+
+@Builder
 public class PetDTO {
-    private int id;
-
+  //  private int id;
+  @JsonView(View.Employee.class)
     private String vid;
-
+    @JsonView(View.Employee.class)
     private String petname;
 
-    public PetDTO(int id, String vid, String petname) {
-        this.id = id;
+    public PetDTO( String vid, String petname) {
+       // this.id = id;
         this.vid = vid;
         this.petname = petname;
     }
 
     public PetDTO(){};
 
-    public int getId() {
-        return id;
-    }
+  //  public int getId() {
+    //    return id;
+  //  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+   // public void setId(int id) {
+      //  this.id = id;
+   // }
 
     public String getVid() {
         return vid;

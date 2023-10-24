@@ -1,24 +1,31 @@
 package com.example.nikita.dto;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+
+@Builder
 public class CarDTO {
 
-    private int id;
+    //private int id;
+    @JsonView(View.Employee.class)
     private String model;
+    @JsonView(View.Employee.class)
     private int made;
 
-    public CarDTO(int id, String model, int made) {
-        this.id = id;
+    public CarDTO(String model, int made) {
+      //  this.id = id;
         this.model = model;
         this.made = made;
     }
 
-    public int getId() {
-        return id;
-    }
+   // public int getId() {
+      //  return id;
+   // }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  //  public void setId(int id) {
+     //   this.id = id;
+   // }
 
     public String getModel() {
         return model;

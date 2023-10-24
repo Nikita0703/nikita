@@ -2,11 +2,15 @@ package com.example.nikita.entity;
 
 import com.example.nikita.dto.View;
 import com.fasterxml.jackson.annotation.JsonView;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "car_for_empl")
+@Builder
+@AllArgsConstructor
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
