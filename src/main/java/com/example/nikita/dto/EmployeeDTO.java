@@ -7,26 +7,34 @@ import lombok.Builder;
 
 import java.util.List;
 
-// Data Transfer Object
 @Builder
 //@Allargsconstructor
 public class EmployeeDTO {
+
     @JsonView(View.Employee.class)
     private int id;
+
     @JsonView(View.Employee.class)
     private String name;
+
     @JsonView(View.Employee.class)
     private String surname;
+
     @JsonView(View.Employee.class)
     private int salary;
+
     @JsonView(View.Employee.class)
     private String department;
+
     @JsonView(View.Employee.class)
     private CarDTO car;
+
     @JsonView(View.Employee.class)
     private HouseDTO house;
+
     @JsonView(View.Employee.class)
     private List<PetDTO> pets;
+
     @JsonView(View.Employee.class)
     private List<ProjectDTO> projects;
 

@@ -7,19 +7,17 @@ import lombok.Builder;
 import java.util.List;
 @Builder
 public class ProjectDTO {
-  //  private int id;
-  @JsonView(View.Employee.class)
+
+    @JsonView(View.Employee.class)
     private String title;
 
     @JsonView(View.Employee.class)
     private int year;
 
-
     @JsonView(View.Project.class)
     private List<EmployeeDTO> employees;
 
     public ProjectDTO(String title, int year, List<EmployeeDTO> employees) {
-      //  this.id=id;
         this.title = title;
         this.year = year;
         this.employees = employees;
@@ -52,11 +50,5 @@ public class ProjectDTO {
         this.employees = employees;
     }
 
-  //  public int getId() {
-    //    return id;
-   // }
 
-  //  public void setId(int id) {
-       // this.id = id;
-  //  }
 }

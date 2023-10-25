@@ -6,7 +6,7 @@ import lombok.Builder;
 
 @Builder
 public class HouseDTO {
-   // private int id;
+
    @JsonView(View.Employee.class)
     private String adress;
     @JsonView(View.Employee.class)
@@ -16,21 +16,12 @@ public class HouseDTO {
     private int flat;
 
     public HouseDTO( String adress, int flour, int flat) {
-      //  this.id = id;
         this.adress = adress;
         this.flour = flour;
         this.flat = flat;
     }
 
     public HouseDTO(){};
-
-  //  public int getId() {
-        //return id;
- //   }
-
-    //public void setId(int id) {
-        //this.id = id;
-   // }
 
     public String getAdress() {
         return adress;

@@ -2,6 +2,7 @@ package com.example.nikita.service;
 
 import com.example.nikita.dto.*;
 import com.example.nikita.entity.*;
+import com.example.nikita.exception_handling.NoSuchEmployeeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.nikita.dao.EmployeeDAO;
@@ -126,6 +127,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         Employee employee = optionalEmployee1.orElse(null);
 
+        if (employee== null) {
+            throw new NoSuchEmployeeException("There is no employee with id = " + id + " in database");
+        }
+
         CarDTO car = CarDTO.builder().
                 model(employee.getCar().getModel())
                 .made(employee.getCar().getMade()).
@@ -169,6 +174,10 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .projects(projects)
                 .build();
 
+        if (employeeDTO == null) {
+            throw new NoSuchEmployeeException("There is no employee with id = " + id + " in database");
+        }
+
         Optional<EmployeeDTO> optionalEmployee = Optional.ofNullable(employeeDTO);
         return optionalEmployee.orElse(null);
     }
@@ -179,9 +188,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeDAO.deleteById(id);
     }
 
-   /// @Override
-  //  public void update(int id){
-        //Employee employee=employeeDAO.findById(id).get();
-   // }
+
 
 }
