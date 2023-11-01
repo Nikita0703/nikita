@@ -36,6 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @Transactional
     public Employee saveEmployee(EmployeeDTO employeedto) {
         Employee employee = employeeFacade.Employee(employeedto);
         return employeeDAO.save(employee);
