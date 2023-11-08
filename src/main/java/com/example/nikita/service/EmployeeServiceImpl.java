@@ -3,7 +3,7 @@ package com.example.nikita.service;
 import com.example.nikita.dto.*;
 import com.example.nikita.entity.*;
 import com.example.nikita.exception_handling.NoSuchEmployeeException;
-import com.example.nikita.facade.EmployeeFacade;
+import com.example.nikita.mapping.EmployeeMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.nikita.dao.EmployeeDAO;
@@ -19,7 +19,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeDAO employeeDAO;
 
     @Autowired
-    private EmployeeFacade employeeFacade;
+    private EmployeeMapping employeeFacade;
 
     @Override
 
@@ -28,7 +28,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<EmployeeDTO> employeeDTOS = new ArrayList<>();
         for (Employee employee:employees){
 
-            EmployeeDTO employeeDTO = employeeFacade.EmployeeDTO(employee);
+            EmployeeDTO employeeDTO = employeeFacade.toEmployeeDTO(employee);
             employeeDTOS.add(employeeDTO);
 
         }
@@ -38,7 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public Employee saveEmployee(EmployeeDTO employeedto) {
-        Employee employee = employeeFacade.Employee(employeedto);
+        Employee employee = employeeFacade.toEmployee(employeedto);
         return employeeDAO.save(employee);
     }
 
@@ -53,7 +53,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new NoSuchEmployeeException("There is no employee with id = " + id + " in database");
         }
 
-        EmployeeDTO employeeDTO = employeeFacade.EmployeeDTO(employee);
+        EmployeeDTO employeeDTO = employeeFacade.toEmployeeDTO(employee);
 
         if (employeeDTO == null) {
             throw new NoSuchEmployeeException("There is no employee with id = " + id + " in database");

@@ -1,4 +1,4 @@
-package com.example.nikita.facade;
+package com.example.nikita.mapping;
 
 import com.example.nikita.dto.*;
 import com.example.nikita.entity.*;
@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class EmployeeFacade {
-    public Employee Employee(EmployeeDTO employeedto){
+public class EmployeeMapping {
+    public Employee toEmployee(EmployeeDTO employeedto){
         Car car = Car.builder().
                 model(employeedto.getCar().getModel())
                 .made(employeedto.getCar().getMade()).
@@ -57,7 +57,7 @@ public class EmployeeFacade {
 
     }
 
-    public EmployeeDTO EmployeeDTO(Employee employee){
+    public EmployeeDTO toEmployeeDTO(Employee employee){
         CarDTO car = CarDTO.builder().
                 model(employee.getCar().getModel())
                 .made(employee.getCar().getMade()).
