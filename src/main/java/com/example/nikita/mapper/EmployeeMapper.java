@@ -1,4 +1,4 @@
-package com.example.nikita.mapping;
+package com.example.nikita.mapper;
 
 import com.example.nikita.dto.*;
 import com.example.nikita.entity.*;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class EmployeeMapping {
+public class EmployeeMapper {
     public Employee toEmployee(EmployeeDTO employeedto){
         Car car = Car.builder().
                 model(employeedto.getCar().getModel())
