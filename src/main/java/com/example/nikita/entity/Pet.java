@@ -17,6 +17,7 @@ import javax.persistence.*;
         @Column(name = "id")
         @JsonView(View.Employee.class)
         private int id;
+
         @JsonView(View.Employee.class)
         @Column(name = "vid")
         private String vid;

@@ -25,6 +25,7 @@ public class EmployeeMapper {
 
         for (PetDTO petDTO:employeedto.getPets()){
             Pet pet = Pet.builder().
+                    id(petDTO.getId()).
                     vid(petDTO.getVid())
                     .petname(petDTO.getName()).
                     build();
@@ -35,6 +36,7 @@ public class EmployeeMapper {
 
         for (ProjectDTO projectDTO:employeedto.getProjects()){
             Project project = Project.builder().
+                    id(projectDTO.getId()).
                     title(projectDTO.getTitle())
                     .year(projectDTO.getYear()).
                     build();
@@ -73,6 +75,7 @@ public class EmployeeMapper {
 
         for (Pet peto:employee.getPets()){
             PetDTO pet = PetDTO.builder().
+                    id(peto.getId()).
                     vid(peto.getVid())
                     .petname(peto.getName()).
                     build();
@@ -83,6 +86,7 @@ public class EmployeeMapper {
 
         for (Project project:employee.getProjects()){
             ProjectDTO projectDTO = ProjectDTO.builder().
+                   id(project.getId()).
                     title(project.getTitle())
                     .year(project.getYear()).
                     build();

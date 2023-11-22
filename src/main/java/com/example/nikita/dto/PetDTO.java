@@ -2,9 +2,14 @@ package com.example.nikita.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Builder;
+import lombok.Getter;
 
 @Builder
 public class PetDTO {
+
+    @Getter
+    @JsonView(View.Employee.class)
+    private int id;
 
     @JsonView(View.Employee.class)
     private String vid;
@@ -12,7 +17,13 @@ public class PetDTO {
     @JsonView(View.Employee.class)
     private String petname;
 
-    public PetDTO( String vid, String petname) {
+    public PetDTO(int id, String vid, String petname) {
+        this.id = id;
+        this.vid = vid;
+        this.petname = petname;
+    }
+
+    public PetDTO(String vid, String petname) {
         this.vid = vid;
         this.petname = petname;
     }
@@ -34,4 +45,9 @@ public class PetDTO {
     public void setName(String name) {
         this.petname = name;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }
