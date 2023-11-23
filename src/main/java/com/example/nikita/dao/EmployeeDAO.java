@@ -12,4 +12,9 @@ public interface EmployeeDAO extends JpaRepository<Employee,Integer> {
     Optional<Employee> findById(int id);
     void deleteById(int id);
 
+    Optional<Employee> findEmployeeByUsername(String username);
+
+    Boolean existsByUsername(String username);
+
+    Boolean existsByPassword(String password);
 }

@@ -7,23 +7,36 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.*;
 
 @Entity
 @Table(name = "employee_full")
 @Builder
 @AllArgsConstructor
-
-public class Employee {
+public class Employee implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @JsonView(View.Employee.class)
     private int id;
+
+    @NotBlank
+    @Size(max = 20)
+    private String username;
+
+    @NotBlank
+    @Size(max = 120)
+    private String password;
+
+
     @JsonView(View.Employee.class)
     @Column(name = "name")
     private String name;
@@ -64,7 +77,26 @@ public class Employee {
     @JsonView(View.Employee.class)
     private List<Project> projects = new ArrayList<>();
 
+    @Getter
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(  name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    @Transient
+    private Collection<? extends GrantedAuthority> authorities;
+
+
     public Employee() {
+    }
+
+    public Employee(int id, String username, String password,
+                Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.authorities = authorities;
     }
 
     public Employee(String name, String surname, String department, int salary) {
@@ -74,7 +106,9 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Employee(String name, String surname, int salary, String department, Car car, House house, List<Pet> pets, List<Project> projects) {
+    public Employee(String username,String password,String name, String surname, int salary, String department, Car car, House house, List<Pet> pets, List<Project> projects) {
+        this.username = username;
+        this.password = password;
         this.name = name;
         this.surname = surname;
         this.department = department;
@@ -155,5 +189,56 @@ public class Employee {
 
     public void setPets(List<Pet> pets) {
         this.pets = pets;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
