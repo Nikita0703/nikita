@@ -13,4 +13,9 @@ public interface EmployeeService {
     EmployeeDTO getEmployee(int id);
 
     void deleteEmployee(int id);
+
+    boolean existsByPassword(String password);
+
+
+    boolean existsByUsername(String username);
 }

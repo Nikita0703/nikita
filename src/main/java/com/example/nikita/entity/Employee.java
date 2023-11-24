@@ -106,7 +106,8 @@ public class Employee implements UserDetails {
         this.salary = salary;
     }
 
-    public Employee(String username,String password,String name, String surname, int salary, String department, Car car, House house, List<Pet> pets, List<Project> projects) {
+    public Employee(int id,String username,String password,String name, String surname, int salary, String department, Car car, House house, List<Pet> pets, List<Project> projects) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;

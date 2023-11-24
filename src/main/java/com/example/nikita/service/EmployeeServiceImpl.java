@@ -70,5 +70,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
 
+    public boolean existsByUsername(String username){
+        return employeeDAO.existsByUsername(username);
+    }
 
+
+
+    public boolean existsByPassword(String password){
+        return employeeDAO.existsByPassword(password);
+    };
 }

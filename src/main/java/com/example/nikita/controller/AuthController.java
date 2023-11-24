@@ -2,6 +2,7 @@ package com.example.nikita.controller;
 
 import com.example.nikita.dao.EmployeeDAO;
 import com.example.nikita.dao.RoleDAO;
+import com.example.nikita.dto.EmployeeDTO;
 import com.example.nikita.entity.ERole;
 import com.example.nikita.entity.Employee;
 import com.example.nikita.entity.Role;
@@ -15,6 +16,7 @@ import com.example.nikita.payload.response.JwtResponse;
 import com.example.nikita.payload.response.MessageResponse;
 import com.example.nikita.security.JwtUtils;
 
+import com.example.nikita.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,7 +39,7 @@ public class AuthController {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    EmployeeDAO userRepository;
+    EmployeeService userRepository;
 
     @Autowired
     RoleDAO roleRepository;
@@ -104,16 +106,16 @@ public class AuthController {
                     .body(new MessageResponse("Error: Email is already in use!"));
         }
 
-        Employee user = new Employee(signUpRequest.getUsername(),
+        EmployeeDTO user = new EmployeeDTO(signUpRequest.getUsername(),
                 encoder.encode(signUpRequest.getPassword()),
                 signUpRequest.getName(),
                 signUpRequest.getSurname(),
                 signUpRequest.getSalary(),
                 signUpRequest.getDepartment(),
-                carMapper.toCar(signUpRequest.getCar()),
-                houseMapper.toHouse(signUpRequest.getHouse()),
-                petMapper.toPetList(signUpRequest.getPets()),
-                projectMapper.toProjectList(signUpRequest.getProjects())
+                signUpRequest.getCar(),
+                signUpRequest.getHouse(),
+                signUpRequest.getPets(),
+                signUpRequest.getProjects()
                 );
 
         Set<String> strRoles = signUpRequest.getRole();
@@ -142,7 +144,7 @@ public class AuthController {
         }
 
         user.setRoles(roles);
-        userRepository.save(user);
+        userRepository.saveEmployee(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }

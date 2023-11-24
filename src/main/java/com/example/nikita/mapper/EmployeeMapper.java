@@ -45,6 +45,8 @@ public class EmployeeMapper {
 
         Employee employee = Employee.builder().
                 id(employeedto.getId()).
+                username(employeedto.getUsername()).
+                password(employeedto.getPassword()).
                 name(employeedto.getName())
                 .surname(employeedto.getSurname())
                 .salary(employeedto.getSalary())
