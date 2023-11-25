@@ -45,6 +45,14 @@ public class CustomUserDetailsService implements UserDetailsService {
                 user.getId(),
                 user.getUsername(),
                 user.getPassword(),
+                user.getName(),
+                user.getSurname(),
+                user.getSalary(),
+                user.getDepartment(),
+                user.getCar(),
+                user.getHouse(),
+                user.getPets(),
+                user.getProjects(),
                 authorities);
     }
 }

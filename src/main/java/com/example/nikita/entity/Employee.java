@@ -91,11 +91,15 @@ public class Employee implements UserDetails {
     public Employee() {
     }
 
-    public Employee(int id, String username, String password,
+    public Employee(int id, String username, String password,String name,String surname,int salary,String department,
                 Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.salary = salary;
+        this.department = department;
         this.authorities = authorities;
     }
 
@@ -118,6 +122,21 @@ public class Employee implements UserDetails {
         this.house = house;
         this.pets = pets;
         this.projects = projects;
+    }
+
+    public Employee(int id,String username,String password,String name, String surname, int salary, String department, Car car, House house, List<Pet> pets, List<Project> projects,Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.department = department;
+        this.salary = salary;
+        this.car = car;
+        this.house = house;
+        this.pets = pets;
+        this.projects = projects;
+        this.authorities = authorities;
     }
 
     public int getId() {
@@ -225,17 +244,17 @@ public class Employee implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override

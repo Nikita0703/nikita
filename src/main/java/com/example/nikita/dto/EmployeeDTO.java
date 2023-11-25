@@ -3,7 +3,6 @@ package com.example.nikita.dto;
 
 import com.example.nikita.entity.Role;
 import com.fasterxml.jackson.annotation.JsonView;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 import java.util.HashSet;

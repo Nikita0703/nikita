@@ -1,6 +1,5 @@
 package com.example.nikita.controller;
 
-import com.example.nikita.dao.EmployeeDAO;
 import com.example.nikita.dao.RoleDAO;
 import com.example.nikita.dto.EmployeeDTO;
 import com.example.nikita.entity.ERole;
@@ -28,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -118,30 +118,36 @@ public class AuthController {
                 signUpRequest.getProjects()
                 );
 
-        Set<String> strRoles = signUpRequest.getRole();
+        Role userRole1 = new Role();
+        userRole1.setName(ERole.ROLE_USER);
+       // roleRepository.save(userRole1);
+
+
+        String strRole = String.valueOf(ERole.ROLE_USER);
         Set<Role> roles = new HashSet<>();
 
-        if (strRoles == null) {
+        if (strRole == null) {
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found 1."));
             roles.add(userRole);
         } else {
-            strRoles.forEach(role -> {
-                switch (role) {
+           // strRoles.forEach(role -> {
+                switch (strRole) {
                     case "admin":
                         Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found 2."));
                         roles.add(adminRole);
 
                         break;
 
                     default:
                         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found 3."));
                         roles.add(userRole);
                 }
-            });
+           // });
         }
+
 
         user.setRoles(roles);
         userRepository.saveEmployee(user);
