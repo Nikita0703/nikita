@@ -55,6 +55,8 @@ public class EmployeeMapper {
                 .house(house)
                 .pets(pets)
                 .projects(projects)
+                .roles(employeedto.getRoles())
+                .authorities(employeedto.getAuthorities())
                 .build();
 
         return employee;
@@ -105,6 +107,8 @@ public class EmployeeMapper {
                 .house(house)
                 .pets(pets)
                 .projects(projects)
+                .roles(employee.getRoles())
+                .authorities(employee.getAuthorities())
                 .build();
 
         return employeeDTO;

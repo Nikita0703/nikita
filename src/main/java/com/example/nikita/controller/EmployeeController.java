@@ -5,6 +5,7 @@ import com.example.nikita.dto.View;
 import com.example.nikita.service.EmployeeService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api1")
 @CrossOrigin
+@PreAuthorize("hasAnyRole()")
 public class EmployeeController {
 
     @Autowired

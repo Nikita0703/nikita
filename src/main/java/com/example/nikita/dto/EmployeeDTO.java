@@ -4,7 +4,9 @@ package com.example.nikita.dto;
 import com.example.nikita.entity.Role;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Builder;
+import org.springframework.security.core.GrantedAuthority;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -47,6 +49,7 @@ public class EmployeeDTO {
 
     private Set<Role> roles = new HashSet<>();
 
+    private Collection<? extends GrantedAuthority> authorities;
       public EmployeeDTO( String name, String surname, int salary, String department, List<ProjectDTO> projects) {
         //this.id=id;
         this.name = name;
@@ -94,6 +97,22 @@ public class EmployeeDTO {
         this.pets = pets;
         this.projects = projects;
         this.roles = roles;
+    }
+
+    public EmployeeDTO(int id, String username, String password, String name, String surname, int salary, String department, CarDTO car, HouseDTO house, List<PetDTO> pets, List<ProjectDTO> projects, Set<Role> roles,Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.salary = salary;
+        this.department = department;
+        this.car = car;
+        this.house = house;
+        this.pets = pets;
+        this.projects = projects;
+        this.roles = roles;
+        this.authorities = authorities;
     }
 
     public EmployeeDTO() {
@@ -193,5 +212,13 @@ public class EmployeeDTO {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
     }
 }

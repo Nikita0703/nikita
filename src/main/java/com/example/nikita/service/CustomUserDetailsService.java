@@ -4,6 +4,7 @@ package com.example.nikita.service;
 import com.example.nikita.dao.EmployeeDAO;
 import com.example.nikita.entity.ERole;
 import com.example.nikita.entity.Employee;
+import com.example.nikita.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -40,6 +41,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
+
 
         return new Employee(
                 user.getId(),
