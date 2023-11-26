@@ -13,7 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api1")
 @CrossOrigin
-@PreAuthorize("hasAnyRole()")
 public class EmployeeController {
 
     @Autowired

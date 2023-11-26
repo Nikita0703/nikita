@@ -118,10 +118,6 @@ public class AuthController {
                 signUpRequest.getProjects()
                 );
 
-        Role userRole1 = new Role();
-        userRole1.setName(ERole.ROLE_USER);
-       // roleRepository.save(userRole1);
-
 
         String strRole = String.valueOf(ERole.ROLE_USER);
         Set<Role> roles = new HashSet<>();
@@ -131,7 +127,6 @@ public class AuthController {
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found 1."));
             roles.add(userRole);
         } else {
-           // strRoles.forEach(role -> {
                 switch (strRole) {
                     case "admin":
                         Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
@@ -145,7 +140,7 @@ public class AuthController {
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found 3."));
                         roles.add(userRole);
                 }
-           // });
+
         }
 
 

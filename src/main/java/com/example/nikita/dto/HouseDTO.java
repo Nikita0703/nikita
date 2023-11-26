@@ -9,9 +9,10 @@ public class HouseDTO {
 
    @JsonView(View.Employee.class)
     private String adress;
-    @JsonView(View.Employee.class)
 
+    @JsonView(View.Employee.class)
     private int flour;
+
     @JsonView(View.Employee.class)
     private int flat;
 

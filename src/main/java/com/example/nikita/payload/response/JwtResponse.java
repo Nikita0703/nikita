@@ -9,7 +9,6 @@ public class JwtResponse {
     private String type = "Bearer";
     private int id;
 
-
     private String name;
 
     private String surname;

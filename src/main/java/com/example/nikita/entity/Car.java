@@ -17,6 +17,7 @@ public class Car {
     @Column(name = "id")
     @JsonView(View.Employee.class)
     private int id;
+
     @JsonView(View.Employee.class)
     @Column(name = "model")
     private String model;
