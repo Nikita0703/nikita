@@ -12,13 +12,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api1")
-@CrossOrigin
+//@CrossOrigin(origins = "http://localhost:3000", methods = { RequestMethod.GET, RequestMethod.POST,RequestMethod.OPTIONS }, allowedHeaders = { "Content-Type", "Authorization" })
 public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
 
     @GetMapping("/employees")
+  //  @RequestMapping(value = "/employees", method = RequestMethod.GET)
     @JsonView(View.Employee.class)
     public List<EmployeeDTO> getAllEmployees() {
         List<EmployeeDTO> employees = employeeService.getAllEmployees();
