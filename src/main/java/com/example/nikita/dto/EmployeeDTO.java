@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Set;
 
 @Builder
-//@Allargsconstructor
 public class EmployeeDTO {
     @JsonView(View.Employee.class)
     private int id;
@@ -22,6 +21,9 @@ public class EmployeeDTO {
 
     @JsonView(View.Employee.class)
     private String password;
+
+    @JsonView(View.Employee.class)
+    private String email;
 
     @JsonView(View.Employee.class)
     private String name;
@@ -50,15 +52,6 @@ public class EmployeeDTO {
     private Set<Role> roles = new HashSet<>();
 
     private Collection<? extends GrantedAuthority> authorities;
-      public EmployeeDTO( String name, String surname, int salary, String department, List<ProjectDTO> projects) {
-        //this.id=id;
-        this.name = name;
-        this.surname = surname;
-        this.salary = salary;
-        this.department = department;
-        this.projects = projects;
-    }
-
     public EmployeeDTO(String username, String password, String name, String surname, int salary, String department, CarDTO car, HouseDTO house, List<PetDTO> pets, List<ProjectDTO> projects) {
         this.username = username;
         this.password = password;
@@ -83,11 +76,10 @@ public class EmployeeDTO {
         this.pets = pets;
         this.projects = projects;
     }
-
-    public EmployeeDTO(int id, String username, String password, String name, String surname, int salary, String department, CarDTO car, HouseDTO house, List<PetDTO> pets, List<ProjectDTO> projects, Set<Role> roles) {
-        this.id = id;
+    public EmployeeDTO(String username, String password, String email, String name, String surname, int salary, String department, CarDTO car, HouseDTO house, List<PetDTO> pets, List<ProjectDTO> projects) {
         this.username = username;
         this.password = password;
+        this.email = email;
         this.name = name;
         this.surname = surname;
         this.salary = salary;
@@ -96,7 +88,6 @@ public class EmployeeDTO {
         this.house = house;
         this.pets = pets;
         this.projects = projects;
-        this.roles = roles;
     }
 
     public EmployeeDTO(int id, String username, String password, String name, String surname, int salary, String department, CarDTO car, HouseDTO house, List<PetDTO> pets, List<ProjectDTO> projects, Set<Role> roles,Collection<? extends GrantedAuthority> authorities) {
@@ -115,7 +106,29 @@ public class EmployeeDTO {
         this.authorities = authorities;
     }
 
+    public EmployeeDTO(int id, String username, String password, String name, String surname, int salary, String department, CarDTO car, HouseDTO house, List<PetDTO> pets, List<ProjectDTO> projects, Set<Role> roles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.salary = salary;
+        this.department = department;
+        this.car = car;
+        this.house = house;
+        this.pets = pets;
+        this.projects = projects;
+        this.roles = roles;
+    }
     public EmployeeDTO() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName() {

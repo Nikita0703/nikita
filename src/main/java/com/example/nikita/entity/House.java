@@ -16,17 +16,14 @@ import javax.persistence.*;
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id")
-        @JsonView(View.Employee.class)
         private int id;
-        @JsonView(View.Employee.class)
+
         @Column(name = "adress")
         private String adress;
 
-        @JsonView(View.Employee.class)
         @Column(name = "flour")
         private int flour;
 
-        @JsonView(View.Employee.class)
         @Column(name = "flat")
         private int flat;
 

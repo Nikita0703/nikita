@@ -1,9 +1,7 @@
 package com.example.nikita.service;
 
-import com.example.nikita.dao.ProjectDAO;
-import com.example.nikita.dto.PetDTO;
+import com.example.nikita.repository.ProjectRepository;
 import com.example.nikita.dto.ProjectDTO;
-import com.example.nikita.entity.Pet;
 import com.example.nikita.entity.Project;
 import com.example.nikita.exception_handling.NoSuchEmployeeException;
 import com.example.nikita.mapper.ProjectMapper;
@@ -15,17 +13,17 @@ import java.util.Optional;
 @Service
 public class ProjectService {
     @Autowired
-    private ProjectDAO projectDAO;
+    private ProjectRepository projectRepository;
 
     @Autowired
     private ProjectMapper projectMapper;
 
     public void deleteEmployee(int id) {
-        projectDAO.deleteById(id);
+        projectRepository.deleteById(id);
     }
 
     public ProjectDTO getProject(int id) {
-        Optional<Project> optionalEmployee1 = projectDAO.findById(id);
+        Optional<Project> optionalEmployee1 = projectRepository.findById(id);
 
         Project employee = optionalEmployee1.orElse(null);
 

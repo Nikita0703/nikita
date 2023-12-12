@@ -3,6 +3,7 @@ package com.example.nikita.payload.request;
 import com.example.nikita.dto.*;
 import com.fasterxml.jackson.annotation.JsonView;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -15,6 +16,9 @@ public class SignupRequest {
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
+
+    @Email
+    private String email;
 
     private String name;
 
@@ -42,6 +46,15 @@ public class SignupRequest {
 
     private Set<String> role;
 
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getUsername() {
         return username;

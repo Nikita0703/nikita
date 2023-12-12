@@ -1,10 +1,8 @@
 package com.example.nikita.service;
 
 
-import com.example.nikita.dao.EmployeeDAO;
-import com.example.nikita.entity.ERole;
+import com.example.nikita.repository.EmployeeRepository;
 import com.example.nikita.entity.Employee;
-import com.example.nikita.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,28 +11,27 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-    private final EmployeeDAO employeeDAO;
+    private final EmployeeRepository employeeRepository;
 
     @Autowired
-    public CustomUserDetailsService(EmployeeDAO employeeDAO) {
-        this.employeeDAO = employeeDAO;
+    public CustomUserDetailsService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        Employee user = employeeDAO.findEmployeeByUsername(username)
+        Employee user = employeeRepository.findEmployeeByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Username not found with username: " + username));
         return build(user);
     }
 
     public Employee loadUserById(int id) {
-        return employeeDAO.findById(id).orElse(null);
+        return employeeRepository.findById(id).orElse(null);
     }
 
     public static Employee build(Employee user) {

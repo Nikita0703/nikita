@@ -47,6 +47,7 @@ public class EmployeeMapper {
                 id(employeedto.getId()).
                 username(employeedto.getUsername()).
                 password(employeedto.getPassword()).
+                email(employeedto.getEmail()).
                 name(employeedto.getName())
                 .surname(employeedto.getSurname())
                 .salary(employeedto.getSalary())
@@ -99,6 +100,9 @@ public class EmployeeMapper {
 
         EmployeeDTO employeeDTO = EmployeeDTO.builder().
                 id(employee.getId()).
+                username(employee.getUsername()).
+                password(employee.getPassword()).
+                email(employee.getEmail()).
                 name(employee.getName())
                 .surname(employee.getSurname())
                 .salary(employee.getSalary())

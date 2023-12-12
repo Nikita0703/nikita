@@ -21,14 +21,11 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @JsonView(View.Employee.class)
     private int id;
 
-    @JsonView(View.Employee.class)
     @Column(name = "title")
     private String title;
 
-    @JsonView(View.Employee.class)
     @Column(name = "year")
     private int year;
 

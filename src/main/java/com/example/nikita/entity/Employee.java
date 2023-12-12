@@ -28,42 +28,36 @@ public class Employee implements UserDetails {
     @JsonView(View.Employee.class)
     private int id;
 
-    @NotBlank
-    @Size(max = 20)
+    @Column(name = "username")
     private String username;
 
-    @NotBlank
-    @Size(max = 120)
+    @Column(name = "password")
     private String password;
 
+    @Getter
+    @Column(name = "email")
+    private String email;
 
-    @JsonView(View.Employee.class)
     @Column(name = "name")
     private String name;
 
-    @JsonView(View.Employee.class)
     @Column(name = "surname")
     private String surname;
 
-    @JsonView(View.Employee.class)
     @Column(name = "department")
     private String department;
 
-    @JsonView(View.Employee.class)
     @Column(name = "salary")
     private int salary;
 
-    @JsonView(View.Employee.class)
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @JsonView(View.Employee.class)
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "house_id")
     private House house;
 
-    @JsonView(View.Employee.class)
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id")
     private List<Pet> pets= new ArrayList<>();
@@ -73,7 +67,6 @@ public class Employee implements UserDetails {
             joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "project_id")
     )
-    @JsonView(View.Employee.class)
     private List<Project> projects = new ArrayList<>();
 
     @Getter
@@ -136,6 +129,26 @@ public class Employee implements UserDetails {
         this.pets = pets;
         this.projects = projects;
         this.authorities = authorities;
+    }
+
+    public Employee(int id,String username,String password,String email,String name, String surname, int salary, String department, Car car, House house, List<Pet> pets, List<Project> projects,Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.name = name;
+        this.surname = surname;
+        this.department = department;
+        this.salary = salary;
+        this.car = car;
+        this.house = house;
+        this.pets = pets;
+        this.projects = projects;
+        this.authorities = authorities;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getId() {

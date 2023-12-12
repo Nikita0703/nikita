@@ -1,13 +1,20 @@
 package com.example.nikita.payload.response;
 import com.example.nikita.dto.*;
-import com.fasterxml.jackson.annotation.JsonView;
+import lombok.Builder;
 
 import java.util.List;
 
+@Builder
 public class JwtResponse {
     private String token;
+
     private String type = "Bearer";
+
     private int id;
+
+    private String username;
+
+    private String password;
 
     private String name;
 
@@ -35,15 +42,17 @@ public class JwtResponse {
     private List<String> roles;
 
 
-    public JwtResponse(String accessToken,int id, String name, String surname, int salary, String department, CarDTO car, HouseDTO house, List<PetDTO> pets, List<ProjectDTO> projects, List<String> roles) {
-        this.token = accessToken;
+    public JwtResponse(String jwt, int id, String username,String password, String name, String surname, int salary, String department, CarDTO carDTO, HouseDTO houseDTO, List<PetDTO> pets, List<ProjectDTO> projects, List<String> roles) {
+        this.token = jwt;
         this.id = id;
+        this.username = username;
+        this.password=password;
         this.name = name;
         this.surname = surname;
         this.salary = salary;
         this.department = department;
-        this.car = car;
-        this.house = house;
+        this.car = carDTO;
+        this.house = houseDTO;
         this.pets = pets;
         this.projects = projects;
         this.roles = roles;
@@ -160,6 +169,22 @@ public class JwtResponse {
 
     public void setRoles(List<String> roles) {
         this.roles = roles;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 

@@ -15,14 +15,11 @@ import javax.persistence.*;
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id")
-        @JsonView(View.Employee.class)
         private int id;
 
-        @JsonView(View.Employee.class)
         @Column(name = "vid")
         private String vid;
 
-        @JsonView(View.Employee.class)
         @Column(name = "petname")
         private String petname;
 

@@ -1,4 +1,4 @@
-package com.example.nikita.dao;
+package com.example.nikita.repository;
 
 import com.example.nikita.entity.Pet;
 import com.example.nikita.entity.Project;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ProjectDAO extends JpaRepository<Pet,Integer> {
+public interface ProjectRepository extends JpaRepository<Pet,Integer> {
     Optional<Project> findById(int id);
     void deleteById(int id);
 }
